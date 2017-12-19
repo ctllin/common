@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ctl.utils</groupId>
+  <artifactId>commonUtils</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>commonUtils</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+	
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	    <version>3.7</version>
+	</dependency>
+	
+	<!-- 此种方式为直接引用项目中的jar包 -->
+    <dependency>
+        <groupId>ctl</groupId>
+        <artifactId>ctl</artifactId>
+        <scope>system</scope>
+        <version>1.0</version>
+        <systemPath>${basedir}\src\lib\ctl-1.0.jar</systemPath>
+    </dependency>
+    
+      <!-- 此包是自定义安装到maven的jar，如果使用需要复制 D:\apache-maven-3.5.2\conf\settings.xml 到目录 ${user.home}/.m2/ 下面 并修改  localRepository 对应的位置-->
+	<dependency>
+	    <groupId>com.ctl.common.util</groupId>
+	    <artifactId>ctl</artifactId>
+	    <version>1.0</version>
+	</dependency>
+    
+  </dependencies>
+</project>
