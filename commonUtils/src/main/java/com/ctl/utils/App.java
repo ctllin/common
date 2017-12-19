@@ -20,5 +20,6 @@ public class App
         System.out.println( "Hello World!" +StringUtils.leftPad("1",4, "0"));
         System.out.println(MD5Util.md5_32("admin").toUpperCase());
         logger.info("test");
+        logger.debug("test");
     }
 }
