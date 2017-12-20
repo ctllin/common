@@ -1,2 +1,0 @@
-svn地址 https://github.com/ctllin/common/trunk/commonWeb
-用户名/密码 ctllin/teng******
