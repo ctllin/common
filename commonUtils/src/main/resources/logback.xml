@@ -24,7 +24,7 @@
             <!-- <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</pattern> -->
              <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{50}-%msg%n</pattern>   
             <immediateFlush>true</immediateFlush>
-			<charset class="java.nio.charset.Charset">gbk</charset>   
+			<charset class="java.nio.charset.Charset">utf-8</charset>   
         </encoder> 
     </appender>
     <!-- 按照每天生成日志文件 -->   
@@ -40,7 +40,7 @@
            <!--  <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n</pattern>    -->
             <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{50}-%msg%n</pattern>   
             <immediateFlush>true</immediateFlush>
-			<charset class="java.nio.charset.Charset">UTF-8</charset>  
+			<charset class="java.nio.charset.Charset">utf-8</charset>  
         </encoder> 
         <!--日志文件最大的大小   不生效 日期和大小不同时生效   不注释 会造成无法切日，切文件到了指定大小无任何反映  -->
       <!--  <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
