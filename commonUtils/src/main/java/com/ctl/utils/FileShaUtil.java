@@ -2,6 +2,7 @@ package com.ctl.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 public class FileShaUtil {
 	static Logger logger = LoggerFactory.getLogger(FileShaUtil.class); 
@@ -32,7 +34,7 @@ public class FileShaUtil {
 	 * */
 	public static String getSha1(File file){
 		long fileLength=file.length();
-	    logger.info("文件大小为:"+fileLength);
+        logger.info("文件大小为:"+fileLength+"\t最后修改时间："+DateUtil.sdfyyyy_MM_dd_HH_mm_ss.format(new Date(file.lastModified())));
 		FileInputStream in=null;
 		try {
 			messagedigest = MessageDigest.getInstance("SHA-1");

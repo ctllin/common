@@ -8,6 +8,8 @@ import java.math.BigInteger;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +18,7 @@ public class FileMD5Util {
 	 public static String getMd5ByFile(File file) throws FileNotFoundException {
          String value = null;
          long fileLength=file.length();
-         logger.info("文件大小为:"+fileLength);
+         logger.info("文件大小为:"+fileLength+"\t最后修改时间："+DateUtil.sdfyyyy_MM_dd_HH_mm_ss.format(new Date(file.lastModified())));
          FileInputStream in = new FileInputStream(file);
          try {
         	 MappedByteBuffer byteBuffer = in.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());

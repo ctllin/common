@@ -3,6 +3,7 @@ package com.ctl.utils;
 import java.io.*;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Date;
 import java.util.zip.CRC32;
 
 import org.slf4j.Logger;
@@ -130,7 +131,7 @@ public class FileCRC32Util {
         };     
         int crc = 0xffffffff;  
         long fileLength=file.length();
-        logger.info("文件大小为:"+fileLength);
+        logger.info("文件大小为:"+fileLength+"\t最后修改时间："+DateUtil.sdfyyyy_MM_dd_HH_mm_ss.format(new Date(file.lastModified())));
         if(fileLength>Integer.MAX_VALUE){
         	logger.info("文件太大不能获取CRC32值:"+fileLength);
         	return "文件太大不能获取CRC32值:"+fileLength;
