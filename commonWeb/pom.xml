@@ -7,16 +7,41 @@
   <version>1.0-SNAPSHOT</version>
   <name>commonWeb Maven Webapp</name>
   <url>http://maven.apache.org</url>
-  <build>
-    <finalName>commonWeb</finalName>
-	<extensions>
-		<extension>
-			<groupId>org.apache.maven.wagon</groupId>
-			<artifactId>wagon-webdav-jackrabbit</artifactId>
-			<version>1.0-beta-7</version>
-		</extension>
-	</extensions>
-  </build>
+	<properties>
+		<!-- spring版本号 -->
+		<spring.version>5.0.2.RELEASE</spring.version>
+		<file.encoding>UTF-8</file.encoding>
+	</properties>
+	<build>
+		<finalName>commonWeb</finalName>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav-jackrabbit</artifactId>
+				<version>1.0-beta-7</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>${file.encoding}</encoding>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>githubweb</warName><!-- war包名称 -->
+					<outputDirectory>target</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
   <distributionManagement>
     <site>
       <id>GithubWebServer</id>
@@ -74,37 +99,37 @@
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
-	    <version>5.0.2.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
-	    <version>5.0.2.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-beans</artifactId>
-	    <version>5.0.2.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	 <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-web</artifactId>
-	    <version>5.0.2.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-webmvc</artifactId>
-	    <version>5.0.2.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-aop</artifactId>
-	    <version>5.0.2.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
   </dependencies>
 </project>
