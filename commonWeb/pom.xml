@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ctl.web</groupId>
-  <artifactId>commonWeb</artifactId>
+  <artifactId>githubweb</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>commonWeb Maven Webapp</name>
+  <name>githubweb Maven Webapp</name>
   <url>http://maven.apache.org</url>
 	<properties>
 		<!-- spring版本号 -->
@@ -13,7 +13,7 @@
 		<file.encoding>UTF-8</file.encoding>
 	</properties>
 	<build>
-		<finalName>commonWeb</finalName>
+		<finalName>githubweb</finalName>
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
