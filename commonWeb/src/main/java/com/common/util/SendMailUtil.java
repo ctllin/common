@@ -7,31 +7,34 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import java.util.Date;
 import java.util.Properties;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+
 public class SendMailUtil{
 	static Logger logger = LoggerFactory.getLogger(SendMailUtil.class);  
     // 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
     // PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）, 
     //     对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
-    public static String myEmailAccount = "service@shareco.cn";
-    public static String myEmailPassword = "xile99hangRoot";
+    public static String myEmailAccount = ConfigUtils.getType("export.email.strFrom");//"as_service@shareco.cn";
+    public static String myEmailPassword = ConfigUtils.getType("export.email.strPwd");//"123456";
     public static String encode="utf-8";
     // 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
     // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
-    public static String myEmailSMTPHost = "hwsmtp.qiye.163.com";
+    public static String myEmailSMTPHost = ConfigUtils.getType("export.email.trHost");//"smtp.qiye.163.com";
     public static String smtpPort="994";
     // 收件人邮箱（替换为自己知道的有效邮箱）
-    public static String receiveMailAccount = "guolinit@163.com";
+    public static String receiveMailAccount = "guolinit@163.com";//ConfigUtils.getType("export.email.receiveMails");//
 
     public static void main(String[] args) throws Exception {
-      SendMailUtil sendMailUtil= new SendMailUtil();
-      sendMailUtil.sendMail(myEmailAccount,"机上购物真情回馈，送您150元购物券",sendMailUtil.getContent(1),new String[]{receiveMailAccount});
-       // new SendMailUtil().sendMail(myEmailAccount,"VIPABC英语课程账号使用方法","您好！\n\r\t您购买的VIPABC英语课程账号已开通。\n\r使用方法：\n\r1. 登录VIPABC官网或手机客户端APP，账号为邮箱，初始密码为手机号后6位。\n\r2. 登录后即可预约上课，请在有效期内使用。\n\r3. VIPABC客服电话：4006-30-30-30。\n\r",new String[]{receiveMailAccount});
-    }
+        SendMailUtil sendMailUtil= new SendMailUtil();
+        sendMailUtil.sendMail(myEmailAccount,"升舱财务报表已生成",sendMailUtil.getContent(1),new String[]{receiveMailAccount});
+         // new SendMailUtil().sendMail(myEmailAccount,"VIPABC英语课程账号使用方法","您好！\n\r\t您购买的VIPABC英语课程账号已开通。\n\r使用方法：\n\r1. 登录VIPABC官网或手机客户端APP，账号为邮箱，初始密码为手机号后6位。\n\r2. 登录后即可预约上课，请在有效期内使用。\n\r3. VIPABC客服电话：4006-30-30-30。\n\r",new String[]{receiveMailAccount});
+      }
     public void sendMail(String myEmailAccount,String subject,String content,String receiveMails[]) throws NoSuchProviderException, MessagingException, Exception{
     	sendMail(myEmailAccount, subject, content, receiveMails,null,null);
     }
@@ -149,7 +152,7 @@ public class SendMailUtil{
 
         // 7. 保存设置
         message.saveChanges();
-       
+
         return message;
     }
     
@@ -209,8 +212,6 @@ public class SendMailUtil{
         // 6. 设置发件时间
         message.setSentDate(new Date());
         // 7. 保存设置
-       // message.setFileName("D:\\p.txt");
-       // message.setFileName("D:\\a.txt");
         message.saveChanges();
         return message;
     }
