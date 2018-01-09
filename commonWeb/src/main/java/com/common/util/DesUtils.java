@@ -13,36 +13,36 @@ import org.slf4j.LoggerFactory;
 public class DesUtils {
 	static Logger logger = LoggerFactory.getLogger(DesUtils.class);
 
-	/** ×Ö·û´®Ä¬ÈÏ¼üÖµ */
+	/** å­—ç¬¦ä¸²é»˜è®¤é”®å€¼ */
 	private static String strDefaultKey = "#^vote^#";
 
-	/** ¼ÓÃÜ¹¤¾ß */
+	/** åŠ å¯†å·¥å…· */
 	private static Cipher encryptCipher = null;
 
-	/** ½âÃÜ¹¤¾ß */
+	/** è§£å¯†å·¥å…· */
 	private static Cipher decryptCipher = null;
 
 	/**
-	 * ½«byteÊı×é×ª»»Îª±íÊ¾16½øÖÆÖµµÄ×Ö·û´®£¬ Èç£ºbyte[]{8,18}×ª»»Îª£º0813£¬ ºÍpublic static byte[]
-	 * hexStr2ByteArr(String strIn) »¥Îª¿ÉÄæµÄ×ª»»¹ı³Ì
-	 * 
+	 * å°†byteæ•°ç»„è½¬æ¢ä¸ºè¡¨ç¤º16è¿›åˆ¶å€¼çš„å­—ç¬¦ä¸²ï¼Œ å¦‚ï¼šbyte[]{8,18}è½¬æ¢ä¸ºï¼š0813ï¼Œ å’Œpublic static byte[]
+	 * hexStr2ByteArr(String strIn) äº’ä¸ºå¯é€†çš„è½¬æ¢è¿‡ç¨‹
+	 *
 	 * @param arrB
-	 *            ĞèÒª×ª»»µÄbyteÊı×é
-	 * @return ×ª»»ºóµÄ×Ö·û´®
+	 *            éœ€è¦è½¬æ¢çš„byteæ•°ç»„
+	 * @return è½¬æ¢åçš„å­—ç¬¦ä¸²
 	 * @throws Exception
-	 *             ±¾·½·¨²»´¦ÀíÈÎºÎÒì³££¬ËùÓĞÒì³£È«²¿Å×³ö
+	 *             æœ¬æ–¹æ³•ä¸å¤„ç†ä»»ä½•å¼‚å¸¸ï¼Œæ‰€æœ‰å¼‚å¸¸å…¨éƒ¨æŠ›å‡º
 	 */
 	public static String byteArr2HexStr(byte[] arrB) throws Exception {
 		int iLen = arrB.length;
-		// Ã¿¸öbyteÓÃÁ½¸ö×Ö·û²ÅÄÜ±íÊ¾£¬ËùÒÔ×Ö·û´®µÄ³¤¶ÈÊÇÊı×é³¤¶ÈµÄÁ½±¶
+		// æ¯ä¸ªbyteç”¨ä¸¤ä¸ªå­—ç¬¦æ‰èƒ½è¡¨ç¤ºï¼Œæ‰€ä»¥å­—ç¬¦ä¸²çš„é•¿åº¦æ˜¯æ•°ç»„é•¿åº¦çš„ä¸¤å€
 		StringBuffer sb = new StringBuffer(iLen * 2);
 		for (int i = 0; i < iLen; i++) {
 			int intTmp = arrB[i];
-			// °Ñ¸ºÊı×ª»»ÎªÕıÊı
+			// æŠŠè´Ÿæ•°è½¬æ¢ä¸ºæ­£æ•°
 			while (intTmp < 0) {
 				intTmp = intTmp + 256;
 			}
-			// Ğ¡ÓÚ0FµÄÊıĞèÒªÔÚÇ°Ãæ²¹0
+			// å°äº0Fçš„æ•°éœ€è¦åœ¨å‰é¢è¡¥0
 			if (intTmp < 16) {
 				sb.append("0");
 			}
@@ -52,21 +52,21 @@ public class DesUtils {
 	}
 
 	/**
-	 * ½«±íÊ¾16½øÖÆÖµµÄ×Ö·û´®×ª»»ÎªbyteÊı×é£¬ ºÍpublic static String byteArr2HexStr(byte[] arrB)
-	 * »¥Îª¿ÉÄæµÄ×ª»»¹ı³Ì
-	 * 
+	 * å°†è¡¨ç¤º16è¿›åˆ¶å€¼çš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºbyteæ•°ç»„ï¼Œ å’Œpublic static String byteArr2HexStr(byte[] arrB)
+	 * äº’ä¸ºå¯é€†çš„è½¬æ¢è¿‡ç¨‹
+	 *
 	 * @param strIn
-	 *            ĞèÒª×ª»»µÄ×Ö·û´®
-	 * @return ×ª»»ºóµÄbyteÊı×é
+	 *            éœ€è¦è½¬æ¢çš„å­—ç¬¦ä¸²
+	 * @return è½¬æ¢åçš„byteæ•°ç»„
 	 * @throws Exception
-	 *             ±¾·½·¨²»´¦ÀíÈÎºÎÒì³££¬ËùÓĞÒì³£È«²¿Å×³ö
+	 *             æœ¬æ–¹æ³•ä¸å¤„ç†ä»»ä½•å¼‚å¸¸ï¼Œæ‰€æœ‰å¼‚å¸¸å…¨éƒ¨æŠ›å‡º
 	 * @author <a href="mailto:leo841001@163.com">LiGuoQing</a>
 	 */
 	public static byte[] hexStr2ByteArr(String strIn) throws Exception {
 		byte[] arrB = strIn.getBytes();
 		int iLen = arrB.length;
 
-		// Á½¸ö×Ö·û±íÊ¾Ò»¸ö×Ö½Ú£¬ËùÒÔ×Ö½ÚÊı×é³¤¶ÈÊÇ×Ö·û´®³¤¶È³ıÒÔ2
+		// ä¸¤ä¸ªå­—ç¬¦è¡¨ç¤ºä¸€ä¸ªå­—èŠ‚ï¼Œæ‰€ä»¥å­—èŠ‚æ•°ç»„é•¿åº¦æ˜¯å­—ç¬¦ä¸²é•¿åº¦é™¤ä»¥2
 		byte[] arrOut = new byte[iLen / 2];
 		for (int i = 0; i < iLen; i = i + 2) {
 			String strTmp = new String(arrB, i, 2);
@@ -76,8 +76,8 @@ public class DesUtils {
 	}
 
 	/**
-	 * Ä¬ÈÏ¹¹Ôì·½·¨£¬Ê¹ÓÃÄ¬ÈÏÃÜÔ¿
-	 * 
+	 * é»˜è®¤æ„é€ æ–¹æ³•ï¼Œä½¿ç”¨é»˜è®¤å¯†é’¥
+	 *
 	 * @throws Exception
 	 */
 	public DesUtils() throws Exception {
@@ -85,10 +85,10 @@ public class DesUtils {
 	}
 
 	/**
-	 * Ö¸¶¨ÃÜÔ¿¹¹Ôì·½·¨
-	 * 
+	 * æŒ‡å®šå¯†é’¥æ„é€ æ–¹æ³•
+	 *
 	 * @param strKey
-	 *            Ö¸¶¨µÄÃÜÔ¿
+	 *            æŒ‡å®šçš„å¯†é’¥
 	 * @throws Exception
 	 */
 	public DesUtils(String strKey) throws Exception {
@@ -108,20 +108,20 @@ public class DesUtils {
 			key = getKey(strDefaultKey.getBytes());
 			encryptCipher = Cipher.getInstance("DES");
 			encryptCipher.init(Cipher.ENCRYPT_MODE, key);
-			
+
 			decryptCipher = Cipher.getInstance("DES");
 			decryptCipher.init(Cipher.DECRYPT_MODE, key);
 		} catch (Exception e) {
-			logger.error("³õÊ¼»¯´íÎóstatic{}");
+			logger.error("åˆå§‹åŒ–é”™è¯¯static{}");
 		}
 
 	}
 	/**
-	 * ¼ÓÃÜ×Ö½ÚÊı×é
-	 * 
+	 * åŠ å¯†å­—èŠ‚æ•°ç»„
+	 *
 	 * @param arrB
-	 *            Ğè¼ÓÃÜµÄ×Ö½ÚÊı×é
-	 * @return ¼ÓÃÜºóµÄ×Ö½ÚÊı×é
+	 *            éœ€åŠ å¯†çš„å­—èŠ‚æ•°ç»„
+	 * @return åŠ å¯†åçš„å­—èŠ‚æ•°ç»„
 	 * @throws Exception
 	 */
 	public static byte[] encrypt(byte[] arrB) throws Exception {
@@ -129,11 +129,11 @@ public class DesUtils {
 	}
 
 	/**
-	 * ¼ÓÃÜ×Ö·û´®
-	 * 
+	 * åŠ å¯†å­—ç¬¦ä¸²
+	 *
 	 * @param strIn
-	 *            Ğè¼ÓÃÜµÄ×Ö·û´®
-	 * @return ¼ÓÃÜºóµÄ×Ö·û´®
+	 *            éœ€åŠ å¯†çš„å­—ç¬¦ä¸²
+	 * @return åŠ å¯†åçš„å­—ç¬¦ä¸²
 	 * @throws Exception
 	 */
 	public static String encrypt(String strIn) throws Exception {
@@ -141,11 +141,11 @@ public class DesUtils {
 	}
 
 	/**
-	 * ½âÃÜ×Ö½ÚÊı×é
-	 * 
+	 * è§£å¯†å­—èŠ‚æ•°ç»„
+	 *
 	 * @param arrB
-	 *            Ğè½âÃÜµÄ×Ö½ÚÊı×é
-	 * @return ½âÃÜºóµÄ×Ö½ÚÊı×é
+	 *            éœ€è§£å¯†çš„å­—èŠ‚æ•°ç»„
+	 * @return è§£å¯†åçš„å­—èŠ‚æ•°ç»„
 	 * @throws Exception
 	 */
 	public static byte[] decrypt(byte[] arrB) throws Exception {
@@ -153,11 +153,11 @@ public class DesUtils {
 	}
 
 	/**
-	 * ½âÃÜ×Ö·û´®
-	 * 
+	 * è§£å¯†å­—ç¬¦ä¸²
+	 *
 	 * @param strIn
-	 *            Ğè½âÃÜµÄ×Ö·û´®
-	 * @return ½âÃÜºóµÄ×Ö·û´®
+	 *            éœ€è§£å¯†çš„å­—ç¬¦ä¸²
+	 * @return è§£å¯†åçš„å­—ç¬¦ä¸²
 	 * @throws Exception
 	 */
 	public static String decrypt(String strIn) throws Exception {
@@ -165,34 +165,34 @@ public class DesUtils {
 	}
 
 	/**
-	 * ´ÓÖ¸¶¨×Ö·û´®Éú³ÉÃÜÔ¿£¬ÃÜÔ¿ËùĞèµÄ×Ö½ÚÊı×é³¤¶ÈÎª8Î» ²»×ã8Î»Ê±ºóÃæ²¹0£¬³¬³ö8Î»Ö»È¡Ç°8Î»
-	 * 
+	 * ä»æŒ‡å®šå­—ç¬¦ä¸²ç”Ÿæˆå¯†é’¥ï¼Œå¯†é’¥æ‰€éœ€çš„å­—èŠ‚æ•°ç»„é•¿åº¦ä¸º8ä½ ä¸è¶³8ä½æ—¶åé¢è¡¥0ï¼Œè¶…å‡º8ä½åªå–å‰8ä½
+	 *
 	 * @param arrBTmp
-	 *            ¹¹³É¸Ã×Ö·û´®µÄ×Ö½ÚÊı×é
-	 * @return Éú³ÉµÄÃÜÔ¿
+	 *            æ„æˆè¯¥å­—ç¬¦ä¸²çš„å­—èŠ‚æ•°ç»„
+	 * @return ç”Ÿæˆçš„å¯†é’¥
 	 * @throws java.lang.Exception
 	 */
 	private static Key getKey(byte[] arrBTmp) throws Exception {
-		// ´´½¨Ò»¸ö¿ÕµÄ8Î»×Ö½ÚÊı×é£¨Ä¬ÈÏÖµÎª0£©
+		// åˆ›å»ºä¸€ä¸ªç©ºçš„8ä½å­—èŠ‚æ•°ç»„ï¼ˆé»˜è®¤å€¼ä¸º0ï¼‰
 		byte[] arrB = new byte[8];
 
-		// ½«Ô­Ê¼×Ö½ÚÊı×é×ª»»Îª8Î»
+		// å°†åŸå§‹å­—èŠ‚æ•°ç»„è½¬æ¢ä¸º8ä½
 		for (int i = 0; i < arrBTmp.length && i < arrB.length; i++) {
 			arrB[i] = arrBTmp[i];
 		}
 
-		// Éú³ÉÃÜÔ¿
+		// ç”Ÿæˆå¯†é’¥
 		Key key = new javax.crypto.spec.SecretKeySpec(arrB, "DES");
 
 		return key;
 	}
 
 	/**
-	 * main·½·¨ ¡£
-	 * 
-	 * @author ÁõÒ¢ĞË
+	 * mainæ–¹æ³• ã€‚
+	 *
+	 * @author åˆ˜å°§å…´
 	 * @param args
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
 		System.out.println(DesUtils.encrypt("123"));
