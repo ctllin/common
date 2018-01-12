@@ -447,7 +447,7 @@ public final class JsonUtil
 	{
 	}
 	public static void main(String[] args) {
-		Person pp=new Person();
+		PersonInner pp=new PersonInner();
 		pp.setId(1);
 		pp.setName("ctl");
 		List<Tat> list=new ArrayList<Tat>();
@@ -458,7 +458,7 @@ public final class JsonUtil
 	}
 
 }
-class Person{
+class PersonInner{
 	private int id;
 	private String name;
 	List<Tat> listTat=new ArrayList<Tat>();
