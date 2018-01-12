@@ -11,8 +11,6 @@ import org.apache.log4j.Logger;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 
-import com.xilehang.common.util.SqlSessionFactoryUtil;
-import com.xilehang.portalpay.po.PortalPayFtpDownloadFile;
 /**
  *  解压Zip文件工具类
  * @author zhangyongbo
@@ -204,7 +202,7 @@ public class ZipUtil {
 	        		File toDelete=new File(filePath);
 	        		if(toDelete.exists()){
 	        			try {
-	        				SqlSessionFactoryUtil.updateFlagByUUID(uuid, PortalPayFtpDownloadFile.UNZIPFAIL);
+	        				//SqlSessionFactoryUtil.updateFlagByUUID(uuid, PortalPayFtpDownloadFile.UNZIPFAIL);
 	        				logger.info("更新PortalPayFtpDownloadFile.UNZIPFAIL成功："+filePath);
 						} catch (Exception e) {
 							logger.info("更新PortalPayFtpDownloadFile.UNZIPFAIL失败："+e);
