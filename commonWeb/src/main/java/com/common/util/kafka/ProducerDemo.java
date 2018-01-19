@@ -39,6 +39,7 @@ public class ProducerDemo {
              //因为没有建立集群所以只能是0个分区
              producer.send(new ProducerRecord<String, String>("foo", 0, Integer.toString(i), Integer.toString(i)));
         }
+        // bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic foo  删除foo主题
         producer.close();
     }
 }
