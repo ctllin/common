@@ -1,14 +1,17 @@
 package com.ctl.utils.ftp;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  *转换器
  *1:将JavaBean 转换成Map、JSONObject
@@ -29,8 +32,9 @@ public class BeanConverter
 
     public static void main(String[] args) throws Exception {
         String str=DateUtil.sdf.format(new Date());
-        System.out.println(DesUtils.encrypt(str));
-        System.out.println(DesUtils.decrypt(DesUtils.encrypt(str)));
+        System.out.println("加密前："+str);
+        System.out.println("加密后："+DesUtils.encrypt(str));
+        System.out.println("解密后："+DesUtils.decrypt(DesUtils.encrypt(str)));
     }
     /**
      * 将javaBean转换成Map(加密后)
@@ -57,7 +61,7 @@ public class BeanConverter
                     }
                 }
             }catch (Exception e){
-                logger.error("toEncryptMap",e);
+                logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(),e);
             }
         }
         return result;
@@ -88,7 +92,7 @@ public class BeanConverter
                     }
                 }
             }catch (Exception e){
-                logger.error("toDecryptMap",e);
+                logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(),e);
             }
         }
         return result;
@@ -218,7 +222,7 @@ public class BeanConverter
                     method.invoke(javabean, new Object[]{data.get(field)});
                 }
             }catch (Exception e){
-                logger.error("transMap2Bean",e);
+                logger.error(Thread.currentThread().getStackTrace()[1].getMethodName(),e);
             }
         }
         return javabean;
