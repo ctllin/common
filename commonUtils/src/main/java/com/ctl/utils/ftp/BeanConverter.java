@@ -10,8 +10,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import com.ctl.utils.DateUtil;
+import com.ctl.utils.bean.Person;
+import com.ctl.utils.encryp.des.DesUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sun.rmi.transport.ObjectTable;
+
 /**
  *转换器
  *1:将JavaBean 转换成Map、JSONObject
@@ -31,10 +36,25 @@ public class BeanConverter
     }
 
     public static void main(String[] args) throws Exception {
-        String str=DateUtil.sdf.format(new Date());
+        String str= DateUtil.sdf.format(new Date());
         System.out.println("加密前："+str);
-        System.out.println("加密后："+DesUtils.encrypt(str));
+        System.out.println("加密后："+ DesUtils.encrypt(str));
         System.out.println("解密后："+DesUtils.decrypt(DesUtils.encrypt(str)));
+        Person person=new Person();
+        person.setId(1);
+        person.setAge(27);
+        person.setAddress("XX新乡");
+        person.setFloatv(1.01f);
+        person.setFloatVV(1.02f);
+        person.setDoublev(2.01d);
+        person.setDoubleVV(2.03d);
+        person.setDatenow(new Date());
+        Map<String,Object> map=new HashMap<String,Object>();
+        transBean2Map(person,map);
+        logger.info(map.toString());
+        person=new Person();
+        transMap2Bean(person,map);
+        logger.info(person.toString());
     }
     /**
      * 将javaBean转换成Map(加密后)
@@ -44,7 +64,7 @@ public class BeanConverter
      */
     public static Map<String, String> toEncryptMap(Object javaBean)
     {
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = new HashMap<>();
         Method[] methods = javaBean.getClass().getDeclaredMethods();
         for (Method method : methods){
             try{
@@ -67,13 +87,13 @@ public class BeanConverter
         return result;
     }
     /**
-     *
-     * @param 将javaBean转换成Map(解密后)
+     * @desc  将javaBean转换成Map(解密后)
+     * @param
      * @return
      */
     public static Map<String, String> toDecryptMap(Object javaBean)
     {
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = new HashMap<>();
         Method[] methods = javaBean.getClass().getDeclaredMethods();
 
         for (Method method : methods){
@@ -122,68 +142,8 @@ public class BeanConverter
         return mapData;
     }
 
-    /**
-     * 将json对象转换成Map
-     *
-     * @param jsonObject json对象
-     * @return Map对象
-     */
-//    public static Map<String, String> toMap(JSONObject jsonObject)
-//    {
-//        Map<String, String> result = new HashMap<String, String>();
-//        Iterator<String> iterator = jsonObject.keys();
-//        String key = null;
-//        String value = null;
-//        while (iterator.hasNext())
-//        {
-//            key = iterator.next();
-//            value = jsonObject.getString(key);
-//            result.put(key, value);
-//        }
-//        return result;
-//    }
 
-    /**
-     * 将javaBean转换成JSONObject
-     *
-     * @param bean javaBean
-     * @return json对象
-     */
-//    public static JSONObject toJSON(Object bean)
-//    {
-//        return new JSONObject(toMap(bean));
-//    }
 
-    /**
-     * 将map转换成Javabean
-     * @param javabean javaBean
-     * @param data map数据
-     */
-    public static Object toJavaBean(Object javabean, Map<String, String> data)
-    {
-        Method[] methods = javabean.getClass().getDeclaredMethods();
-        for (Method method : methods){
-            String field =null;
-            try {
-                if (method.getName().startsWith("set")){
-                    field = method.getName();
-                    field = field.substring(field.indexOf("set") + 3);
-                    field = field.toLowerCase().charAt(0) + field.substring(1);
-                    Object value=data.get(field);
-                    if(value!=null){
-                        try {
-                            method.invoke(javabean, new Object[]{(Object)value});
-                        } catch (Exception e) {
-                            method.invoke(javabean, new Object[]{Float.parseFloat(value.toString())});
-                        }
-                    }
-                }
-            }catch (Exception e){
-                logger.error(field+"类型为:"+field.getClass(),e);
-            }
-        }
-        return javabean;
-    }
     public static Map<String, Object> transBean2Map(Object obj,Map<String,Object> map) {
         if(obj == null){
             return null;
@@ -227,18 +187,4 @@ public class BeanConverter
         }
         return javabean;
     }
-
-    /**
-     * 将javaBean转换成JSONObject
-     *
-     * @param bean javaBean
-     * @return json对象
-     * @throws ParseException json解析异常
-     */
-//    public static void toJavaBean(Object javabean, String data) throws ParseException 
-//    { 
-//        JSONObject jsonObject = new JSONObject(data); 
-//        Map<String, String> datas = toMap(jsonObject); 
-//        toJavaBean(javabean, datas); 
-//    } 
 }
