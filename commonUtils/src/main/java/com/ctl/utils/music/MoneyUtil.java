@@ -66,14 +66,12 @@ public class MoneyUtil {
 		moneyTmp = moneyTmp.replaceAll("\u96F6\u6574", "\u6574");
 		logger.info("大写金额:"+moneyTmp);
 		if(isAudio){
-			String path=MoneyUtil.class.getClassLoader().getResource("./").toString();
-			path=path.substring(6, path.length());
-			final String  path2=path+File.separator+"musicres/";
+			String path=MoneyUtil.class.getClassLoader().getResource("./").getPath()+"musicres/";
 			//System.out.println(path);
-			MusicUtil.play(URLDecoder.decode(path2,"utf-8")+"RMB.WAV");
+			MusicUtil.play(URLDecoder.decode(path,"utf-8")+"RMB.WAV");
 			String strs[]=moneyTmp.split("");
 			for(int i=0;i<strs.length;i++ ){
-				String filePath=path2+strs[i]+".WAV";
+				String filePath=path+strs[i]+".WAV";
 				MusicUtil.play(URLDecoder.decode(filePath,"utf-8"));
 				//logger.info(filePath);
 			}

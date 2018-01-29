@@ -48,9 +48,7 @@ public class MusicUtil {
 	}
 
 	public static void main(String[] args) throws LineUnavailableException,UnsupportedAudioFileException, IOException, URISyntaxException {
-		String path=MusicUtil.class.getClassLoader().getResource("./").toString();
-		path=path.substring(6, path.length());
-		path=path+File.separator+"musicres/RMB.WAV";
+		String path=MusicUtil.class.getClassLoader().getResource("./").getPath()+"musicres/RMB.WAV";
 		System.out.println(path);
 		//MusicUtil.play(URLDecoder.decode(path,"utf-8"));
 		MoneyUtil.TransToRMB("12345.56");
