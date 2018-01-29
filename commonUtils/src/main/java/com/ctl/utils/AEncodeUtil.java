@@ -11,12 +11,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 
 /**
- * 编码工具�?
+ * 编码工具
  * 1.将byte[]转为各种进制的字符串
  * 2.base 64 encode
  * 3.base 64 decode
- * 4.获取byte[]的md5�?
- * 5.获取字符串md5�?
+ * 4.获取byte[]的md5
+ * 5.获取字符串md5
  * 6.结合base64实现md5加密
  * 7.AES加密
  * 8.AES加密为base 64 code
@@ -44,10 +44,10 @@ public class AEncodeUtil {
 	 * 将byte[]转为各种进制的字符串
 	 * @param bytes byte[]
 	 * @param radix 可以转换进制的范围，从Character.MIN_RADIX到Character.MAX_RADIX，超出范围后变为10进制
-	 * @return 转换后的字符�?
+	 * @return 转换后的字符
 	 */
 	public static String binary(byte[] bytes, int radix){
-		return new BigInteger(1, bytes).toString(radix);// 这里�?代表正数
+		return new BigInteger(1, bytes).toString(radix);// 这里代表正数
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class AEncodeUtil {
 	}
 	
 	/**
-	 * 获取byte[]的md5�?
+	 * 获取byte[]的md5
 	 * @param bytes byte[]
 	 * @return md5
 	 * @throws Exception
@@ -88,7 +88,7 @@ public class AEncodeUtil {
 	}
 	
 	/**
-	 * 获取字符串md5�?
+	 * 获取字符串md5
 	 * @param msg 
 	 * @return md5
 	 * @throws Exception
