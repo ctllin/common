@@ -6,6 +6,18 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
 
+/**
+ * 需要安装环境
+ * 启动ZooKeeper(进入/home/soft/kafka_2.12-1.0.0 目录下面执行)
+ 打开一个新终端并键入以下命令 -
+ bin/zookeeper-server-start.sh config/zookeeper.properties
+ 要启动Kafka Broker，请键入以下命令 -
+ bin/kafka-server-start.sh config/server.properties
+ 启动Kafka Broker后，在ZooKeeper终端上键入命令 jps ，您将看到以下响应 -
+ 821 QuorumPeerMain
+ 928 Kafka
+ 931 Jps
+ */
 public class ProducerDemo {
     public static String serverHost="192.168.42.19:9092";
     public static void main(String[] args) {
