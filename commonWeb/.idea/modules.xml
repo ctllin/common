@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../commonUtils/commonUtils.iml" filepath="$PROJECT_DIR$/../commonUtils/commonUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/githubweb.iml" filepath="$PROJECT_DIR$/githubweb.iml" />
     </modules>
   </component>
