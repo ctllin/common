@@ -8,7 +8,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-import com.common.util.HttpClientUtil;
 import sun.reflect.Reflection;
 
 
