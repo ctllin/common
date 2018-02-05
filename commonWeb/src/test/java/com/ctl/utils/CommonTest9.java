@@ -189,7 +189,7 @@ public class CommonTest9 {
 				 String url="http://103.235.230.213/airshop/member/memberLogin.do";
 				     url="http://103.235.230.213:20081/airshop/member/memberLogin.do";
 				     
-				String restult= HttpClientUtil.httpPostRequest(url, bodyMap);
+				String restult="";// HttpClientUtil.httpPostRequest(url, bodyMap);
 				System.err.println(restult);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
