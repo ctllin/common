@@ -4,7 +4,7 @@ import com.ctl.web.dubbo.service.HelloService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * 运行时需要启动zooKeeper
+ * 运行时需要启动zooKeeper ,需要执行Provider或者启动tomcat服务
  */
 public class Consumer {
     public static void main(String[] args) throws Exception {
