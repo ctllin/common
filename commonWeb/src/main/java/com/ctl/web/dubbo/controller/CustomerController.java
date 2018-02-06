@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class CustomerController {
     @Resource(name="helloService")
     private HelloService helloService;
-    @Resource(name="helloServiceConsumer")
-    private HelloService helloServiceConsumer;
     Logger logger= LoggerFactory.getLogger(CustomerController.class);
     @RequestMapping(value="/say")
     public ModelAndView say(HttpServletRequest request, HttpServletResponse response){
