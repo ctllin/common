@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctl.web.common.mapper.CommonMapper">
+    <select id="selectBySql" resultType="map" parameterType="java.lang.String">
+		${_parameter}
+	</select>
+    <select id="selectBySql1" resultType="java.lang.Object" parameterType="java.lang.String">
+		${_parameter}
+	</select>
+    <select id="selectBySql2" resultType="java.lang.Object" parameterType="java.lang.String">
+		${_parameter}
+	</select>
+    <select id="selectBySql3" resultType="map" parameterType="java.lang.String">
+		${_parameter}
+	</select>
+    <select id="countBySql" resultType="java.lang.Integer" parameterType="java.lang.String">
+		${_parameter}
+	</select>
+    <delete id="deleteBySql" parameterType="java.lang.String">
+		${_parameter}
+	</delete>
+    <update id="updateBySql" parameterType="java.lang.String">
+		${_parameter}
+	</update>
+</mapper>

@@ -1,11 +1,72 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
   <display-name>Archetype Created Web Application</display-name>
     <context-param>  
         <param-name>webAppRootKey</param-name>   
         <param-value>GitHubCommonWeb</param-value> 
-    </context-param> 
+    </context-param>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- 指定spring相关文件的位置 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <!-- <param-value>classpath:spring/spring.xml,classpath:spring/spring-ehcache.xml,classpath:spring/spring-hibernate.xml,classpath:spring/spring-tasks.xml</param-value> -->
+        <param-value>classpath:spring/spring-mybatis.xml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:logback.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
+    <!-- 开启spring功能 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 防止内存溢出监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>provider</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                classpath:spring/applicationContext.xml
+            </param-value>
+            <!--<param-value>/WEB-INF/classes/spring/applicationContext.xml</param-value>-->
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>provider</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- 字符过滤器 -->
+    <filter>
+        <filter-name>Set Character Encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
 </web-app>

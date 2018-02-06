@@ -16,5 +16,6 @@ public class Consumer {
         String hello = helloService.say("world");
         // show the result
         System.out.println(hello);
+        context.close();
     }
 }
