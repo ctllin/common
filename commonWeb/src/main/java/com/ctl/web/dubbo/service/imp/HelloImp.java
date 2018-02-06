@@ -16,7 +16,7 @@ public class HelloImp implements HelloService{
     @Override
     public String say(String name) {
         if(commonMapper!=null){
-           logger.info(""+ commonMapper.selectBySql("select 1"));
+           logger.info(""+ commonMapper.selectBySql("select NOW()"));
         }
         return "HelloImp say:"+name;
     }
