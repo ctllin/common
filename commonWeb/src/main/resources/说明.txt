@@ -1,4 +1,4 @@
 svn地址 https://github.com/ctllin/common/trunk/commonWeb
 用户名/密码 ctllin/teng******
 mybatis mapper.xml文件需要放到resources目录下面
-mysql 需要使用高版本，低版本可能无法正常启动tomcat服务
+mysql 需要使用高版本，低版本可能无法正常启动tomcatzoo服务

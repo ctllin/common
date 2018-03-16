@@ -8,7 +8,7 @@
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <dubbo:application name="demo-provider" owner="ctllin" organization="ctl"/>
     <!--<dubbo:registry address="multicast://224.5.6.7:1234" />-->
-    <dubbo:registry address="zookeeper://192.168.42.1:2181"/>
+    <dubbo:registry address="zookeeper://192.168.42.29:2181"/>
     <dubbo:protocol name="dubbo" port="20880"/>
     <dubbo:service interface="com.ctl.web.dubbo.service.HelloService" ref="helloService"/>
     <bean id="helloService" class="com.ctl.web.dubbo.service.imp.HelloImp"/>
