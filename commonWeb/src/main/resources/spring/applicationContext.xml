@@ -45,7 +45,6 @@
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/images/**" location="/images/"/>
-    <!-- 引入服务提供者配置文件
+    <!-- 引入服务提供者配置文件 -->
     <import resource="classpath*:/dubbo/provider.xml"/>
-    -->
 </beans>
