@@ -97,5 +97,6 @@
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-demo:7.2.1" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers:3.6.2" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:3.6.3" level="project" />
   </component>
 </module>
