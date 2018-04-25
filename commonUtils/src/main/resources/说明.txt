@@ -26,3 +26,6 @@ Main-Class: com.ctl.utils.App
 
 svn地址 https://github.com/ctllin/common/trunk/commonUtils
 用户名/密码 ctllin/teng******
+mybatis分页GitHub位置
+https://github.com/miemiedev/mybatis-paginator
+git clone https://github.com/miemiedev/mybatis-paginator.git 

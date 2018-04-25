@@ -1,8 +1,11 @@
 package com.ctl.test;
 
 import com.ctl.test.mapper.PersonMapper;
+import com.ctl.test.po.Person;
 import com.ctl.test.po.PersonExample;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,13 +36,17 @@ public class StringTest {
             System.out.println("BeanName:" + beanName);
             System.out.println("Bean的类型：" + beanType);
             System.out.println("Bean所在的包：" + beanPackage);
-            System.out.println("\r\n");
+            System.out.println("\r\n"+bean);
         }
-
         PersonMapper mapper= (PersonMapper)context.getBean("personMapper");
         Map<String,Object> dataMap=new HashMap<>();
         PersonExample example=new PersonExample();
         System.out.println( mapper.countByExample(example));
         System.out.println(mapper.selectByParams(dataMap,new PageBounds(2,10)));
+        PageList<Person> peopleList = (PageList<Person>) mapper.selectByParams(dataMap, new PageBounds(2, 10));
+        Paginator paginator = peopleList.getPaginator();
+        System.out.println("totalPages:"+paginator.getTotalPages());;
+        System.out.println("totalCount:"+paginator.getTotalCount());;
+        System.out.println("page:"+paginator.getPage());
     }
 }
