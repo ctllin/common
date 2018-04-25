@@ -572,7 +572,7 @@ public class HttpClientUtil {
     }
 
     public static void main(String[] args) {
-        Map<String,Object> params=new HashMap<>();
+        Map<String,String> params=new HashMap<>();
         String orderNum="DK201612161707549717600CB6D1CF23";
         params.put("version", "2.6");
         params.put("serialID", orderNum);//2017011175106295   DKFFD023B949D77EE720170111105445
@@ -587,7 +587,8 @@ public class HttpClientUtil {
 
         try {
             String result="";//httpPostRequest("http://localhost/TradePaySSM/portalpay/getPortalPayResult", params);
-            result=httpPostRequest("https://gateway.hnapay.com/website/queryOrderResult.htm", params);
+            //result=httpPostRequest("https://gateway.hnapay.com/website/queryOrderResult.htm", params);
+             jsonSendCrossDomain("http://127.0.0.1:8080/channel/channel/add",params);
             System.err.println(result);
             //SubmitPost("http://127.0.0.1/TradePaySSM/common/fileUpload2/3","D:\\file.xls");
         } catch (Exception e) {
