@@ -5,6 +5,24 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+
+
+  <!-- 分页查询 -->
+  <select id="selectByParams" parameterType="map" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from person
+   <where>
+       <if test="whereStr != null" >
+           and ${whereStr}
+       </if>
+   </where>
+  </select>
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
