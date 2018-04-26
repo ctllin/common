@@ -14,12 +14,12 @@
             maven conf settings.xml have this :
             <servers>
                 <server>
-                    <id>maven-release</id>
+                    <id>nexus-release</id>
                     <username>admin</username>
                     <password>admin123</password>
                 </server>
                 <server>
-                    <id>maven-snapshots</id>
+                    <id>nexus-snapshots</id>
                     <username>admin</username>
                     <password>admin123</password>
                 </server>

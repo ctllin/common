@@ -1,0 +1,4 @@
+maven jar包搜索地址:
+http://www.mvnrepository.com/artifact/org.apache.maven.plugins
+maven pom.xml 所需插件地址 （clean,compiler,deploy,install等）
+http://maven.apache.org/plugins/index.html
