@@ -22,7 +22,7 @@
     </properties>
     <build>
         <resources>
-            <resource>
+            <resource><!-- add mybatis mapper to classpath -->
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/mapper/*Mapper.xml</include>
