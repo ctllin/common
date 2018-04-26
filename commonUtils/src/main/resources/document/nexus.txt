@@ -1,6 +1,10 @@
 下载地址:
 	https://www.sonatype.com/nexus-repository-oss
 	https://www.sonatype.com/download-oss-sonatype
+配置文件地址：
+	/etc/nexus.properties
+启动服务：
+	bin/nexus
 开放端口 8081
 	firewall-cmd --get-active-zones 
 	firewall-cmd --zone=FedoraServer --add-port=8081/tcp --permanent
