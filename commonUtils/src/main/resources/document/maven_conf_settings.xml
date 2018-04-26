@@ -112,12 +112,17 @@ under the License.
 
   <servers>
 		<server> <!-- add by ctl for nexus -->
-			<id>maven-release</id>
+			<id>nexus-release</id>
 			<username>admin</username>
 			<password>admin123</password>
 		</server>
 		<server> <!-- add by ctl for nexus -->
-			<id>maven-snapshots</id>
+			<id>nexus-snapshots</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		<server> <!-- add by ctl for nexus -->
+			<id>nexus-public</id>
 			<username>admin</username>
 			<password>admin123</password>
 		</server>
@@ -173,9 +178,19 @@ under the License.
       <url>http://my.repository.com/repo/path</url>
     </mirror>
      -->
-     <!-- ÐèÒªÅäÖÃnexus   -->
+     <!-- éœ€è¦é…ç½®nexus   -->
+    <mirror>   <!-- add by ctl for nexus -->
+      <id>nexus-releases</id>   
+      <mirrorOf>*</mirrorOf>   
+      <url>http://192.168.42.29:8081/repository/maven-releases</url>   
+    </mirror>  
+    <mirror>   <!-- add by ctl for nexus -->
+      <id>nexus-snapshots</id>   
+      <mirrorOf>*</mirrorOf>   
+      <url>http://192.168.42.29:8081/repository/maven-snapshots</url>   
+    </mirror>   
     <mirror> <!-- add by ctl for nexus -->
-			<id>ctllin</id>
+			<id>nexus-public</id>
 			<mirrorOf>*</mirrorOf>
 			<url>http://192.168.42.29:8081/repository/maven-public/</url>
 		</mirror>
@@ -221,13 +236,23 @@ under the License.
 	         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
 	     </properties>
 	 </profile>
-	 
-	 <profile> <!-- add by ctl for nexus -->
-			<id>ctllin</id>
+
+		<profile>
+			<id>nexus</id>
 			<repositories>
 				<repository>
-					<id>nexus</id>
-					<url>http://192.168.42.29:8081/repository/maven-releases/</url>
+					<id>nexus-releases</id>
+					<url>http://nexus-releases</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>nexus-snapshots</id>
+					<url>http://nexus-snapshots</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -238,8 +263,18 @@ under the License.
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
-					<id>nexus</id>
-					<url>http://192.168.42.29:8081/repository/maven-releases/</url>
+					<id>nexus-releases</id>
+					<url>http://nexus-releases</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>nexus-snapshots</id>
+					<url>http://nexus-snapshots</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -248,7 +283,8 @@ under the License.
 					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
-		</profile>
+		</profile>  
+	
     <!-- profile
      | Specifies a set of introductions to the build process, to be activated using one or more of the
      | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
@@ -325,6 +361,6 @@ under the License.
   </activeProfiles>
   -->
   <activeProfiles> <!-- add by ctl for nexus -->
-		<activeProfile>ctllin</activeProfile>
+	  <activeProfile>nexus</activeProfile>  
 	</activeProfiles>
 </settings>
