@@ -18,16 +18,16 @@
 	mvn install:install-file -DgroupId=com.ctl -DartifactId=commonUtils -Dversion=1.0.1 -Dpackaging=jar -Dfile=/home/jars/commonUtils.jar
 安装到私服 :
 	mvn deploy:deploy-file -DgroupId=org.apache.hadoop -DartifactId=hbase -Dversion=1.0 -Dpackaging=jar -Dfile=[path to file] -Durl=[url] -DrepositoryId=[id]
-	mvn deploy:deploy-file -DgroupId=com.ctl -DartifactId=commonUtils -Dversion=1.0.1 -Dpackaging=jar -Dfile=target/commonUtils.jar -Durl=http://192.168.42.29:8081/repository/maven-releases/  -DrepositoryId=maven-release
+	mvn deploy:deploy-file -DgroupId=com.ctl -DartifactId=commonUtils -Dversion=1.0.2 -Dpackaging=jar -Dfile=target/commonUtils.jar -Durl=http://192.168.42.29:8081/repository/maven-releases/  -DrepositoryId=nexus-release
 maven conf settings.xml中有如下配置
  <servers>
 		<server> <!-- add by ctl for nexus -->
-			<id>maven-release</id>
+			<id>nexus-release</id>
 			<username>admin</username>
 			<password>admin123</password>
 		</server>
 		<server> <!-- add by ctl for nexus -->
-			<id>maven-snapshots</id>
+			<id>nexus-snapshots</id>
 			<username>admin</username>
 			<password>admin123</password>
 		</server>

@@ -31,12 +31,12 @@
             </servers>
         -->
         <repository>
-            <id>maven-release</id>
+            <id>nexus-release</id>
             <name>Releases</name>
             <url>http://192.168.42.29:8081/repository/maven-releases</url>
         </repository>
         <snapshotRepository>
-            <id>maven-snapshots</id>
+            <id>nexus-snapshots</id>
             <name>Snapshot</name>
             <url>http://192.168.42.29:8081/repository/maven-snapshots</url>
         </snapshotRepository>
