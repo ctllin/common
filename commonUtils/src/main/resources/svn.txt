@@ -1,3 +1,14 @@
+常用检出命令：
+svn co http://路径(目录或文件的全路径)　[本地目录全路径]  --username 用户名 --password 密码
+svn co svn://路径(目录或文件的全路径)　[本地目录全路径]  --username 用户名 --password 密码
+svn checkout http://路径(目录或文件的全路径)　[本地目录全路径] --username　用户名
+svn checkout svn://路径(目录或文件的全路径)　[本地目录全路径]  --username　用户名
+ 
+svn checkout svn://192.168.42.7/HelloWorld/trunk HelloWorld   迁出项目
+svn update更新项目(在迁出项目的文件夹下面执行)
+
+svn commit -m 'add JOptionPanel' --username ctllin  #然后输入ctllin对应的密码
+
 常用命令：
 1、svn update
 注：后面也可以指定目录
