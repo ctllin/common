@@ -111,12 +111,12 @@ under the License.
    |-->
 
   <servers>
-		<server> <!-- add by ctl for nexus -->
+		<server> <!-- add by ctl for nexus -->  <!-- 用于发布正式版本 -->
 			<id>nexus-release</id>
 			<username>admin</username>
 			<password>admin123</password>
 		</server>
-		<server> <!-- add by ctl for nexus -->
+		<server> <!-- add by ctl for nexus --><!-- 用于发布快照版本 -->
 			<id>nexus-snapshots</id>
 			<username>admin</username>
 			<password>admin123</password>
@@ -182,12 +182,12 @@ under the License.
     <mirror>   <!-- add by ctl for nexus -->
       <id>nexus-releases</id>   
       <mirrorOf>*</mirrorOf>   
-      <url>http://192.168.42.29:8081/repository/maven-releases</url>   
+      <url>http://192.168.42.29:8081/repository/maven-releases/</url>   
     </mirror>  
     <mirror>   <!-- add by ctl for nexus -->
       <id>nexus-snapshots</id>   
       <mirrorOf>*</mirrorOf>   
-      <url>http://192.168.42.29:8081/repository/maven-snapshots</url>   
+      <url>http://192.168.42.29:8081/repository/maven-snapshots/</url>   
     </mirror>   
     <mirror> <!-- add by ctl for nexus -->
 			<id>nexus-public</id>
