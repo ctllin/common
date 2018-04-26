@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 鏁版嵁杞崲瀹炵敤绫� * 
- * @author yonsin
- * 
+ *
  */
 public class ConvertUtil {
     private static Map<Class<?>, Converter> converters = new HashMap<Class<?>,Converter>();
@@ -65,14 +63,7 @@ public class ConvertUtil {
 			return obj;
     }
     
-    /**
-	 * 鎶婂瓧绗︿覆杞崲鎴愭寚瀹氱殑鏁版嵁绫诲瀷
-	 * 
-	 * @param val
-	 *            瀛楃涓�	 * @param destType
-	 *            鐩爣鏁版嵁绫诲瀷
-	 * @return 杞崲鍚庣殑鏁板�
-	 */
+
     private static Object castFromString(String val, Class<?> destType){
         String typeName = destType.getCanonicalName();
         if (typeName.equals("java.lang.String"))
