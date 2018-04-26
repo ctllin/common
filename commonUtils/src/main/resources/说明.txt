@@ -22,8 +22,6 @@ Created-By: Apache Maven 3.5.2
 Build-Jdk: 1.8.0_112
 Main-Class: com.ctl.utils.App
 20180125
-
-
 svn地址 https://github.com/ctllin/common/trunk/commonUtils
 用户名/密码 ctllin/teng******
 mybatis分页GitHub位置
