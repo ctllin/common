@@ -1,0 +1,92 @@
+常用命令：
+1、svn update
+注：后面也可以指定目录
+如果命令后无目录，则将当前目录及其子目录下的所有文件都更新到最新版本。 
+
+
+2、svn update -r 200 test.php
+将本地副本中的文件test.php还原到版本200
+
+
+3、svn update test.php
+更新成与版本库同步的最新版本。
+注：如果在提交的时候提示过期的话，是因为冲突，需要先update-->修改文件--->最后再提交commit。
+
+
+多人合作时：
+更新要经常频繁的做，尽量让问题及早暴露，便于处理。
+提交代码前要更新，否则容易产生版本冲突。
+
+
+4、更新的时候除去某些文件
+svn up --set-depth=exclude XX yyy zz
+详细可参考：http://blog.csdn.net/c_singleboy/article/details/45558941
+
+注： 
+svn update 等价于 svn up
+
+更多关于update命令的解释可以参看下面的命令：
+[root@onlineyx02 ~]# svn help update
+update (up): 将版本库的修改合并到工作副本中。
+用法: update [PATH...]
+
+如果没有指定版本，则将工作副本更新到 HEAD 版本。否则同步到 -r 选项所指定的版本。
+
+  每更新一项就输出一行信息，使用首字符来报告执行的动作。这些字符的含义是: 
+
+    A  已添加
+    D  已删除
+    U  已更新
+    C  合并冲突
+    G  合并成功
+    E  已存在
+
+  第一列字符表示文件内容更新，第二列表示文件属性更新。第三列中的字符“B”
+  表示此文件上的锁被终止或窃取。
+
+  如果使用了 “--force” 选项，在工作副本中未版本控制的障碍路径，不会自动
+  导致签出失败。 如果障碍路径与版本库中的对应路径类型相同(文件或目录),它
+  将成为受版本控制的路径，但是内容不改变。它意味着障碍路径的子孙，如果也
+  是障碍路径，那么也将受版本控制。对于障碍路径中的文件，如果与版本库内的
+  不同，将视为工作副本发生本地修改。版本库中的所有属性都应用于障碍路径。
+  用第一列字符 “E” 来报告障碍路径。
+
+  使用“--set-depth”选项设置此操作目标的工作副本之新深度。
+
+有效选项: 
+  -r [--revision] ARG      : ARG (一些命令也接受ARG1:ARG2范围)
+                             版本参数可以是如下之一: 
+                                NUMBER       版本号
+                                '{' DATE '}' 在指定时间以后的版本
+                                'HEAD'       版本库中的最新版本
+                                'BASE'       工作副本的基线版本
+                                'COMMITTED'  最后提交或基线之前
+                                'PREV'       COMMITTED的前一版本
+  -N [--non-recursive]     ：过时；尝试 --depth=files 或 --depth=immediates
+  --depth ARG                ：受深度参数 ARG(“empty”，“files”，“immediates”，或“infinity”) 约束的操作
+  --set-depth ARG          ：设置工作副本的新深度为 ARG(“exclude”，“empty”，“files”，“immediates”，
+                            或“infinity”)
+  -q [--quiet]                   ：不打印信息，或只打印概要信息
+  --diff3-cmd ARG        ：使用 ARG 作为合并命令
+  --force                         ：强制操作运行
+  --ignore-externals      ：忽略外部项目
+  --changelist ARG       ：只能对修改列表 ARG 成员操作
+                             [aliases: --cl]
+  --editor-cmd ARG      ：使用 ARG 作为外部编辑器
+  --accept ARG             ：指定自动解决冲突动作
+                            ('postpone', 'base', 'mine-conflict',
+                             'theirs-conflict', 'mine-full', 'theirs-full',
+                             'edit', 'launch')
+
+全局选项: 
+  --username ARG        ：指定用户名称 ARG
+  --password ARG        ：指定密码 ARG
+  --no-auth-cache          ：不要缓存用户认证令牌
+  --non-interactive         ：不要交互提示
+  --trust-server-cert       ：不提示的接受未知的 SSL 服务器证书(只用于选项 “--non-interactive”)
+  --config-dir ARG        ：从目录 ARG 读取用户配置文件
+  --config-option ARG  ：以下属格式设置用户配置选项：
+                              FILE：SECTION:OPTION=[VALUE]
+                             例如：
+                                 servers:global:http-library=serf
+
