@@ -1,0 +1,35 @@
+下载地址:
+	https://www.sonatype.com/nexus-repository-oss
+	https://www.sonatype.com/download-oss-sonatype
+开放端口 8081
+	firewall-cmd --get-active-zones 
+	firewall-cmd --zone=FedoraServer --add-port=8081/tcp --permanent
+	firewall-cmd --reload
+	firewall-cmd --list-ports 
+访问地址:
+	http://192.168.42.29:8081/
+	其中admin具有全部权限默认密码admin123；anonymous作为匿名用户，只具有查看权限。 
+安装到本地库：
+	mvn clean/mvn compile/mvn package
+	mvn install:install-file -DgroupId=com.ctl -DartifactId=commonUtils -Dversion=1.0.1 -Dpackaging=jar -Dfile=/home/jars/commonUtils.jar
+安装到私服 :
+	mvn deploy:deploy-file -DgroupId=org.apache.hadoop -DartifactId=hbase -Dversion=1.0 -Dpackaging=jar -Dfile=[path to file] -Durl=[url] -DrepositoryId=[id]
+	mvn deploy:deploy-file -DgroupId=com.ctl -DartifactId=commonUtils -Dversion=1.0.1 -Dpackaging=jar -Dfile=target/commonUtils.jar -Durl=http://192.168.42.29:8081/repository/maven-releases/  -DrepositoryId=maven-release
+maven conf settings.xml中有如下配置
+ <servers>
+		<server> <!-- add by ctl for nexus -->
+			<id>maven-release</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		<server> <!-- add by ctl for nexus -->
+			<id>maven-snapshots</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		<server>
+			<id>apacheserver</id>
+			<username>root</username>
+			<password>ctllin</password>
+		</server>
+</servers>
