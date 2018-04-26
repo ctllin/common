@@ -1,3 +1,6 @@
+在ps命令中，“-T”选项可以开启线程查看。下面的命令列出了由进程号为<pid>的进程创建的所有线程。 
+ps -T -p 6907  #查看进程6907下面的所有子进程
+
 Linux中启动或禁止用户使用SSH登录
 #vim /etc/ssh/sshd_config
 DenyUsers    username #多个用户用空格隔开例如 DenyUsers ftpuser nginxuser mysqluser
