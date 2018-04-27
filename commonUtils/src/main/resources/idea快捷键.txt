@@ -1,5 +1,7 @@
 IntelliJ Idea 常用快捷键列表
-
+1.tomcat输出到控制台（console）出现中文乱码，设置Run/Debug Configuration中设置environment variables 来解决。
+Idea=>Run=>Edit Configuration，弹出的对话框中，在Startup/Connection 中Run中添加environment variables
+JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8.如下图所示：
 
 1、在IntelJ中和Eclipse中稍有不同，在Eclipse中，输入main再按Alt+/即可自动补全main函数，但是在IntellJ中则是输入psvm，选中即可
 2、在方法体内部有for循环，在IntellJ中是输入fori，然后会有一个提示，选中需要的for循环即可
