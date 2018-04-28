@@ -68,7 +68,9 @@
         </resources>
         <finalName>commonUtils</finalName>
         <plugins>
-            <plugin><!--用混淆插件混淆代码  https://blog.csdn.net/pltuyuhong/article/details/50971734 -->
+            <plugin><!--用混淆插件混淆代码 
+	    https://blog.csdn.net/wltj920/article/details/48970869
+	     https://blog.csdn.net/pltuyuhong/article/details/50971734 -->
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
                 <version>2.0.14</version>
@@ -157,6 +159,8 @@
                         <lib>${java.home}/lib/jce.jar</lib>
                         <!--<lib>D:/workspace3/datacube/lib/apache-axiom-api-1.2.7.jar</lib>
                         <lib>D:/workspace3/datacube/lib/axis2-kernel-1.7.1.jar</lib>-->
+                        <lib>/home/soft/apache-maven-3.5.2/repository/org/apache/ws/commons/axiom/axiom-api/1.2.20/axiom-api-1.2.20.jar</lib>
+                        <lib> /home/soft/apache-maven-3.5.2/repository/org/apache/axis2/axis2-kernel/1.7.7/axis2-kernel-1.7.7.jar</lib>
                     </libs>
                 </configuration>
             </plugin>
