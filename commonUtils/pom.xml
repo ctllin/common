@@ -52,6 +52,7 @@
         <file.encoding>UTF-8</file.encoding>
         <!--lucene版本号7.2.1-->
         <lucene.version>7.2.1</lucene.version>
+        <java.home>/home/soft/jdk1.8.0_112</java.home>
     </properties>
     <build>
         <resources>
@@ -67,6 +68,98 @@
         </resources>
         <finalName>commonUtils</finalName>
         <plugins>
+            <plugin><!--用混淆插件混淆代码  https://blog.csdn.net/pltuyuhong/article/details/50971734 -->
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.14</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>proguard</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <attach>true</attach>
+                    <attachArtifactClassifier>pg</attachArtifactClassifier>
+                    <!-- attach 的作用是在 install 与 deploy 时将生成的 pg 文件也安装与部署 -->
+                    <options> <!-- 详细配置方式参考 ProGuard 官方文档 -->
+                        <option>-ignorewarnings</option> <!--忽略所有告警-->
+                        <option>-dontshrink</option>   <!--不做 shrink -->
+                        <option>-dontoptimize</option> <!--不做 optimize -->
+                        <option>-dontskipnonpubliclibraryclasses </option>
+                        <option>-dontskipnonpubliclibraryclassmembers </option>
+                        <option>-dontnote </option>
+
+                        <option>-keepattributes Signature</option>
+
+                        <!--保持源码名与行号（异常时有明确的栈信息），注解（默认会过滤掉所有注解，会影响框架的注解）-->
+                        <option>-keepattributes Exceptions,InnerClasses,*Annotation*,Signature,LineNumberTable</option>
+
+
+                        <!-- 保持bean类名与属性名不变不变 -->
+                        <option>-keep class com.sq.platform.datacube.model.**</option>
+                        <option>-keepclassmembers class com.sq.platform.datacube.model.** { *;}</option>
+                        <!-- 保持对外的接口性质类对外的类名与方法名不变 -->
+                        <option>-keep class com.sq.platform.datacube.core.**</option>
+                        <option>-keepclassmembers class com.sq.platform.datacube.core.** { *;}</option>
+
+                        <option>-keep class com.sq.platform.datacube.exception.**</option>
+                        <option>-keepclassmembers class com.sq.platform.datacube.exception.** { *;}</option>
+
+                        <!--以下配置第三方包不参与混淆-->
+                        <option>-keepclassmembers class com.hopechart.dcroute.** { *;}</option>
+                        <option>-dontwarn com.hopechart.dcroute.**</option>
+                        <option>-keep class com.hopechart.dcroute.** {*;}</option>
+
+                        <option>-keepclassmembers class com.hopechart.cloud.** { *;}</option>
+                        <option>-dontwarn com.hopechart.cloud.**</option>
+                        <option>-keep class com.hopechart.cloud.** {*;}</option>
+
+                        <option>-keepclassmembers class com.hopechart.jcc.** { *;}</option>
+                        <option>-dontwarn com.hopechart.jcc.**</option>
+                        <option>-keep class com.hopechart.jcc.** {*;}</option>
+
+                        <option>-keepclassmembers class oracle.** { *;}</option>
+                        <option>-dontwarn oracle.**</option>
+                        <option>-keep class oracle.**</option>
+
+                        <option>-keepclassmembers class org.aopalliance.** { *;}</option>
+                        <option>-dontwarn org.aopalliance.**</option>
+                        <option>-keep class org.aopalliance.**</option>
+
+                        <option>-keepclassmembers class org.apache.commons.** { *;}</option>
+                        <option>-dontwarn org.apache.commons.**</option>
+                        <option>-keep class org.apache.commons.**</option>
+
+                        <option>-keepclassmembers class org.apache.log4j.** { *;}</option>
+                        <option>-dontwarn org.apache.log4j.**</option>
+                        <option>-keep class org.apache.log4j.**</option>
+
+                        <option>-keepclassmembers  class org.slf4j.** { *;}</option>
+                        <option>-dontwarn  org.slf4j.**</option>
+                        <option>-keep class org.slf4j.**</option>
+
+                        <option>-keepclassmembers class org.springframework.** { *;}</option>
+                        <option>-dontwarn  org.springframework.**</option>
+                        <option>-keep class org.springframework.**</option>
+
+                    </options>
+                    <!--指定混淆的jar包，我这里是将上一步输出的jar包进行混淆-->
+                    <injar>datacube-1.0-SNAPSHOT-jar-with-dependencies.jar</injar>
+                    <!--指定输出的jar包名-->
+                    <outjar>${project.build.finalName}-pg</outjar>
+                    <obfuscate>true</obfuscate>
+                    <!-- 添加依赖，必须添加，不然会报一些莫名错误-->
+                    <libs>
+                        <lib>${java.home}/lib/rt.jar</lib>
+                        <lib>${java.home}/lib/jce.jar</lib>
+                        <!--<lib>D:/workspace3/datacube/lib/apache-axiom-api-1.2.7.jar</lib>
+                        <lib>D:/workspace3/datacube/lib/axis2-kernel-1.7.1.jar</lib>-->
+                    </libs>
+                </configuration>
+            </plugin>
             <!-- 要将源码放上去，需要加入这个插件 -->
             <plugin>
                 <artifactId>maven-source-plugin</artifactId> <!-- http://maven.apache.org/plugins/maven-source-plugin/ -->
@@ -137,6 +230,21 @@
     </build>
 
     <dependencies>
+        <!--maven+proguard第三方jar打包混淆-->
+        <!-- https://mvnrepository.com/artifact/org.apache.ws.commons.axiom/axiom-api -->
+        <dependency>
+            <groupId>org.apache.ws.commons.axiom</groupId>
+            <artifactId>axiom-api</artifactId>
+            <version>1.2.20</version>
+        </dependency>
+        <!--maven+proguard第三方jar打包混淆-->
+        <!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-kernel -->
+        <dependency>
+            <groupId>org.apache.axis2</groupId>
+            <artifactId>axis2-kernel</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
